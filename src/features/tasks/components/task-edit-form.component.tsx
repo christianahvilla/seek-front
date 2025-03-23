@@ -4,16 +4,17 @@ import {
   TextField,
   MenuItem,
   Box,
-  Typography,
   Grid2,
+  FormControl,
+  InputLabel,
+  Select,
+  FormHelperText,
 } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { TaskFormInputs, TaskStatus } from "../task.types";
 import { useTaskStore } from "../store/task.store";
-import { v4 as uuidv4 } from "uuid";
 // Use mock service for now
-import { mockCreateTaskService as createTaskService } from "../services/mock-create-task.service";
 import { useNavigate } from "react-router-dom";
 // import { createTaskService } from '../services/create-task.service'
 
@@ -23,32 +24,34 @@ const schema = yup.object({
   status: yup.mixed<TaskStatus>().oneOf(Object.values(TaskStatus)).required(),
 });
 
-export const TaskCreateForm = () => {
-  const { addTask } = useTaskStore();
+interface TaskEditFormProps {
+  taskId: string;
+}
+
+export const TaskEditForm = ({ taskId }: TaskEditFormProps) => {
+  const { tasks, updateTask } = useTaskStore();
+  const task = tasks.find((t) => t.id === taskId);
+  const navigate = useNavigate();
+  console.log(task);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
+    watch,
   } = useForm<TaskFormInputs>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      title: task?.title || "",
+      description: task?.description || "",
+      status: task?.status ?? TaskStatus.TODO, // ✅ Ensures default enum value
+    },
   });
-  const navigate = useNavigate();
 
   const onSubmit = async (data: TaskFormInputs) => {
-    try {
-      const task = {
-        id: uuidv4(),
-        ...data,
-      };
-      const created = await createTaskService(task);
-      console.log(created);
-      addTask(created);
-      reset();
-      navigate("/dashboard"); // ✅ go back after success
-    } catch (error: unknown) {
-      console.error("Task creation failed", error);
-    }
+    const updated = { ...task!, ...data };
+    updateTask(updated);
+    navigate("/dashboard");
   };
 
   return (
@@ -60,8 +63,6 @@ export const TaskCreateForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 4 }}
         >
-          <Typography variant="h6">Add New Task</Typography>
-
           <TextField
             label="Title"
             {...register("title")}
@@ -76,22 +77,26 @@ export const TaskCreateForm = () => {
             helperText={errors.description?.message}
           />
 
-          <TextField
-            label="Status"
-            select
-            {...register("status")}
-            error={!!errors.status}
-            helperText={errors.status?.message}
-          >
-            {Object.values(TaskStatus).map((status) => (
-              <MenuItem key={status} value={status}>
-                {status.replace("_", " ").toUpperCase()}
-              </MenuItem>
-            ))}
-          </TextField>
+          <FormControl fullWidth error={!!errors.status}>
+            <InputLabel id="task-status-label">Status</InputLabel>
+            <Select
+              labelId="task-status-label"
+              id="task-status-select"
+              value={watch("status")}
+              label="Status"
+              {...register("status")}
+            >
+              {Object.values(TaskStatus).map((status) => (
+                <MenuItem key={status} value={status}>
+                  {status.replace("_", " ").toUpperCase()}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>{errors.status?.message}</FormHelperText>
+          </FormControl>
 
           <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Creating..." : "Create Task"}
+            {isSubmitting ? "Saving..." : "Save Changes"}
           </Button>
         </Box>
       </Grid2>

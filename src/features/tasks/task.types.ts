@@ -1,6 +1,6 @@
 export enum TaskStatus {
-  TODO = "to do",
-  IN_PROGRESS = "in progress",
+  TODO = "todo",
+  IN_PROGRESS = "in_progress",
   DONE = "done",
 }
 
@@ -10,3 +10,9 @@ export interface Task {
   description: string;
   status: TaskStatus;
 }
+
+export type TaskFormInputs = {
+  title: string;
+  description: string;
+  status: TaskStatus;
+};
