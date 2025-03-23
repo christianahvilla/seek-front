@@ -1,12 +1,7 @@
 import { AxiosError } from "axios";
 import { httpClient } from "../../../api/http-client.api";
-
-const TOKEN_KEY = "auth_token";
-
-export interface LoginPayload {
-  email: string;
-  password: string;
-}
+import { LoginPayload } from "../auth.types";
+import { TOKEN_KEY } from "../auth.constants";
 
 export const loginService = async (data: LoginPayload) => {
   try {
