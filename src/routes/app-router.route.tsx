@@ -15,57 +15,9 @@ const TaskChartPage = lazy(
 const TaskDashboardPage = lazy(
   () => import("../features/tasks/pages/task-dashboard.page")
 );
-
-// export const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <PublicLayout />,
-//     children: [
-//       {
-//         path: "",
-//         element: (
-//           <Suspense fallback={Fallback}>
-//             <HomePage />
-//           </Suspense>
-//         ),
-//       },
-//       {
-//         path: "login",
-//         element: (
-//           <Suspense fallback={Fallback}>
-//             <LoginPage />
-//           </Suspense>
-//         ),
-//       },
-//     ],
-//   },
-//   {
-//     path: "/dashboard",
-//     element: (
-//       <PrivateRoute>
-//         <DashboardLayout />
-//       </PrivateRoute>
-//     ),
-//     children: [
-//       {
-//         path: "",
-//         element: (
-//           <Suspense fallback={Fallback}>
-//             <TaskDashboardPage />
-//           </Suspense>
-//         ),
-//       },
-//       {
-//         path: "charts",
-//         element: (
-//           <Suspense fallback={Fallback}>
-//             <TaskChartPage />
-//           </Suspense>
-//         ),
-//       },
-//     ],
-//   },
-// ]);
+const TaskCreatePage = lazy(
+  () => import("../features/tasks/pages/task-create.page")
+);
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +59,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={Fallback}>
             <TaskChartPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "create",
+        element: (
+          <Suspense fallback={Fallback}>
+            <TaskCreatePage />
           </Suspense>
         ),
       },

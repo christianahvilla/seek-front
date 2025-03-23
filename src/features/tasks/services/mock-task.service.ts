@@ -97,8 +97,7 @@ const mockTasks: Task[] = [
 export const mockGetTasksService = async (): Promise<Task[]> => {
   await new Promise((res) => setTimeout(res, 500)); // Simulated delay
 
-  // ✅ Simulate AxiosError randomly
-  const shouldFail = false; // set to true to test error UI
+  const shouldFail = false;
 
   if (shouldFail) {
     const error = {
