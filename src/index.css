@@ -13,14 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ✅ REQUIRED: height for full viewport layout */
 html,
 body,
 #root {
-  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 body {
