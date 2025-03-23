@@ -19,6 +19,10 @@ const TaskCreatePage = lazy(
   () => import("../features/tasks/pages/task-create.page")
 );
 
+const TaskEditPage = lazy(
+  () => import("../features/tasks/pages/task-edit.page")
+);
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -67,6 +71,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={Fallback}>
             <TaskCreatePage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "edit/:id",
+        element: (
+          <Suspense fallback={Fallback}>
+            <TaskEditPage />
           </Suspense>
         ),
       },

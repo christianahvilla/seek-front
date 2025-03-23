@@ -8,6 +8,8 @@ interface TaskCardProps {
 }
 
 export const TaskCard = ({ task }: TaskCardProps) => {
+  const { id: taskId } = task;
+
   return (
     <Card>
       <CardContent>
@@ -23,7 +25,7 @@ export const TaskCard = ({ task }: TaskCardProps) => {
             />
           </Box>
 
-          <TaskActionsMenu />
+          <TaskActionsMenu taskId={taskId} />
         </Box>
       </CardContent>
     </Card>
