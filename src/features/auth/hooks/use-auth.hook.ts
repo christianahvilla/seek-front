@@ -1,10 +1,27 @@
 import { useCallback } from "react";
+import { jwtDecode } from "jwt-decode";
+import { TOKEN_KEY } from "../auth.constants";
 
-const TOKEN_KEY = "auth_token";
+interface JwtPayload {
+  email: string;
+  name: string;
+  exp: number;
+  iat: number;
+}
 
 export const useAuth = () => {
   const token = localStorage.getItem(TOKEN_KEY);
   const isAuthenticated = !!token;
+
+  let user: JwtPayload | null = null;
+
+  if (token) {
+    try {
+      user = jwtDecode<JwtPayload>(token);
+    } catch (error) {
+      console.error("Invalid token", error);
+    }
+  }
 
   const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);
@@ -15,5 +32,6 @@ export const useAuth = () => {
     token,
     isAuthenticated,
     logout,
+    user,
   };
 };
