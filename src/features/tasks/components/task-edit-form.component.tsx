@@ -16,6 +16,8 @@ import { TaskFormInputs, TaskStatus } from "../task.types";
 import { useTaskStore } from "../store/task.store";
 // Use mock service for now
 import { useNavigate } from "react-router-dom";
+import { updateTaskService } from "../services/update-task.service";
+import { useSnackbarStore } from "../../../shared/store/snackbar.store";
 // import { createTaskService } from '../services/create-task.service'
 
 const schema = yup.object({
@@ -30,6 +32,7 @@ interface TaskEditFormProps {
 
 export const TaskEditForm = ({ taskId }: TaskEditFormProps) => {
   const { tasks, updateTask } = useTaskStore();
+  const { showSnackbar } = useSnackbarStore();
   const task = tasks.find((t) => t.id === taskId);
   const navigate = useNavigate();
   console.log(task);
@@ -49,8 +52,9 @@ export const TaskEditForm = ({ taskId }: TaskEditFormProps) => {
   });
 
   const onSubmit = async (data: TaskFormInputs) => {
-    const updated = { ...task!, ...data };
+    const updated = await updateTaskService(taskId, data);
     updateTask(updated);
+    showSnackbar("Task updated successfully", "success");
     navigate("/dashboard");
   };
 

@@ -3,8 +3,7 @@ import { Button, TextField, Box, Typography } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
-// import { loginService } from "../services/auth.service";
-import { mockLoginService as loginService } from "../services/mock-login.service";
+import { loginService } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { extractErrorMessage } from "../../../utils/handle-error.util";
 
@@ -37,6 +36,7 @@ export const LoginForm = () => {
       await loginService(data);
       navigate("/dashboard");
     } catch (error: unknown) {
+      console.log(error);
       setErrorMessage(extractErrorMessage(error));
     }
   };
