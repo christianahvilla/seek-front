@@ -11,11 +11,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { TaskFormInputs, TaskStatus } from "../task.types";
 import { useTaskStore } from "../store/task.store";
-import { v4 as uuidv4 } from "uuid";
-// Use mock service for now
-import { mockCreateTaskService as createTaskService } from "../services/mock-create-task.service";
 import { useNavigate } from "react-router-dom";
-// import { createTaskService } from '../services/create-task.service'
+import { createTaskService } from "../services/create-task.service";
+import { useSnackbarStore } from "../../../shared/store/snackbar.store";
 
 const schema = yup.object({
   title: yup.string().required(),
@@ -25,6 +23,8 @@ const schema = yup.object({
 
 export const TaskCreateForm = () => {
   const { addTask } = useTaskStore();
+  const { showSnackbar } = useSnackbarStore();
+
   const {
     register,
     handleSubmit,
@@ -38,15 +38,15 @@ export const TaskCreateForm = () => {
   const onSubmit = async (data: TaskFormInputs) => {
     try {
       const task = {
-        id: uuidv4(),
         ...data,
       };
       const created = await createTaskService(task);
-      console.log(created);
       addTask(created);
       reset();
-      navigate("/dashboard"); // ✅ go back after success
+      showSnackbar("Task created successfully", "success");
+      navigate("/dashboard");
     } catch (error: unknown) {
+      showSnackbar("Task could not be created", "error");
       console.error("Task creation failed", error);
     }
   };

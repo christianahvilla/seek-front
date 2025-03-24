@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { ApiClient } from "./api-client.interface";
+import { TOKEN_KEY } from "../features/auth/auth.constants";
 
 export class AxiosClient implements ApiClient {
   private instance: AxiosInstance;
@@ -13,12 +14,30 @@ export class AxiosClient implements ApiClient {
     });
 
     this.instance.interceptors.request.use((config) => {
-      const token = localStorage.getItem("auth_token");
+      const token = localStorage.getItem(TOKEN_KEY);
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     });
+
+    this.instance.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        const status = error.response?.status;
+        const requestUrl = error.config?.url;
+
+        if (status === 401 && requestUrl !== "/login") {
+          localStorage.removeItem("TOKEN_KEY");
+
+          if (window.location.pathname !== "/login") {
+            window.location.href = "/login";
+          }
+        }
+
+        return Promise.reject(error);
+      }
+    );
   }
 
   async get<T>(url: string): Promise<T> {

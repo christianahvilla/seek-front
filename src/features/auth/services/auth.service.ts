@@ -12,9 +12,8 @@ export const loginService = async (data: LoginPayload) => {
     }
 
     localStorage.setItem(TOKEN_KEY, response.token);
-  } catch (err) {
+  } catch (err: unknown) {
     const error = err as AxiosError<{ message?: string }>;
-    const message = error?.response?.data?.message || "Something went wrong";
-    throw new Error(message);
+    throw error;
   }
 };
