@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for App.tsx</title>
+    <title>Code coverage report for src/components/header.component.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> App.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> header.component.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/35</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/35</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -95,10 +95,7 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -130,44 +127,38 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useState } from 'react'</span></span></span>
-<span class="cstat-no" title="statement not covered" >import reactLogo from './assets/react.svg'</span>
-<span class="cstat-no" title="statement not covered" >import viteLogo from '/vite.svg'</span>
-<span class="cstat-no" title="statement not covered" >import './App.css'</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { Link as RouterLink } from "react-router-dom";</span>
+<span class="cstat-no" title="statement not covered" >import { useAuth } from "../features/auth/hooks/use-auth.hook";</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >function App() {</span>
-<span class="cstat-no" title="statement not covered" >  const [count, setCount] = useState(0)</span>
+<span class="cstat-no" title="statement not covered" >export const Header = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const { logout, user } = useAuth();</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;a href="https://vite.dev" target="_blank"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;img src={viteLogo} className="logo" alt="Vite logo" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/a&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;a href="https://react.dev" target="_blank"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;img src={reactLogo} className="logo react" alt="React logo" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/a&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;h1&gt;Vite + React&lt;/h1&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="card"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;button onClick={() =&gt; setCount((count) =&gt; count + 1)}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          count is {count}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;p&gt;</span>
-<span class="cstat-no" title="statement not covered" >          Edit &lt;code&gt;src/App.tsx&lt;/code&gt; and save to test HMR</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p className="read-the-docs"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        Click on the Vite and React logos to learn more</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
-<span class="cstat-no" title="statement not covered" >  )</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" >    &lt;AppBar position="static"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Toolbar sx={{ display: "flex", justifyContent: "space-between" }}&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Box sx={{ display: "flex", alignItems: "center", gap: 2 }}&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Typography variant="h6"&gt;Task Manager&lt;/Typography&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Button component={RouterLink} to="/dashboard" color="inherit"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            Dashboard</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Button&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Button component={RouterLink} to="/dashboard/charts" color="inherit"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            Charts</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Button&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Box&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default App</span>
+<span class="cstat-no" title="statement not covered" >        &lt;Box sx={{ display: "flex", alignItems: "center", gap: 2 }}&gt;</span>
+<span class="cstat-no" title="statement not covered" >          {user &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >            &lt;Typography variant="body2"&gt;Welcome, {user.name}&lt;/Typography&gt;</span>
+<span class="cstat-no" title="statement not covered" >          )}</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Button color="secondary" variant="contained" onClick={logout}&gt;</span>
+<span class="cstat-no" title="statement not covered" >            Logout</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Button&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/Box&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/Toolbar&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/AppBar&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -175,16 +166,16 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-21T04:52:21.424Z
+                at 2025-03-24T03:20:47.812Z
             </div>
-        <script src="prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="sorter.js"></script>
-        <script src="block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

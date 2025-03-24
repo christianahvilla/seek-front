@@ -1,4 +1,3 @@
-import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { PublicLayout } from "../layouts/public-layout.layout";
 import { DashboardLayout } from "../layouts/dashboard-layout.layout";
@@ -23,7 +22,7 @@ const TaskEditPage = lazy(
   () => import("../features/tasks/pages/task-edit.page")
 );
 
-export const router = createBrowserRouter([
+export const routesConfig = [
   {
     path: "/",
     element: <PublicLayout />,
@@ -84,4 +83,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+];

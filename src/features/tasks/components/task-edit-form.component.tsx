@@ -35,7 +35,6 @@ export const TaskEditForm = ({ taskId }: TaskEditFormProps) => {
   const { showSnackbar } = useSnackbarStore();
   const task = tasks.find((t) => t.id === taskId);
   const navigate = useNavigate();
-  console.log(task);
 
   const {
     register,
