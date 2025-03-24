@@ -1,6 +1,8 @@
-import { RouterProvider } from "react-router-dom";
-import { router } from "./routes/app-router.route";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { routesConfig } from "./routes/app-router.route";
 import { SnackbarNotification } from "./shared/components/snackbar-notification.component";
+
+const router = createBrowserRouter(routesConfig);
 
 function App() {
   return (

@@ -12,6 +12,7 @@ export const loginService = async (data: LoginPayload) => {
     }
 
     localStorage.setItem(TOKEN_KEY, response.token);
+    return response.token;
   } catch (err: unknown) {
     const error = err as AxiosError<{ message?: string }>;
     throw error;

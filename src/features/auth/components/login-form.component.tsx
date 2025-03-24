@@ -67,7 +67,7 @@ export const LoginForm = () => {
       />
 
       <TextField
-        label="Contraseña"
+        label="Password"
         type="password"
         {...register("password")}
         error={!!errors.password}
